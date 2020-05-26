@@ -5,194 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
-   
-
-    	
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <link href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
-
-        
-    
-  
     <title>English words</title>
 </head>
 <body>
 
     <h2>Chose your level and match animals with their kids!</h2>
+    <h3><strong>Instruction:</strong>click on a child card and drag it onto its parent card</h3>
     <audio src="audio/applause.wav" ></audio>
 
     <div id="accordion">
         <h2>Level - Easy </h2>
         <div>
             <div id="easy-container" class="level-container">
-               <!-- images in easy-level.js -->
+                <div id="easy-parent"></div>
+                <div id="easy-child"></div>
+               <!-- images in sol.js -->
             </div>
         </div>
         <h2>Level Intermediate</h2>
             <div id="mid-container" class="level-container">
-                <!-- <div id = "swine" class = "animal"> 
-                    <img src = "images/swine.png">
-                </div>
-                
-                <div id = "fish" class = "animal"> 
-                    <img src = "images/fish!.png">
-                </div>
-                
-                <div id = "sheep" class = "animal"> 
-                    <img src = "images/sheep.png">
-                </div>
-            
-                <div id = "snake" class = "animal"> 
-                    <img src = "images/snake.png">
-                </div>
-                
-                <div id = "rabbit" class = "animal"> 
-                    <img src = "images/rabbit.png">
-                </div>
-                
-                <div id = "deer" class = "animal"> 
-                    <img src = "images/deer.png">
-                </div>
-                
-                <div id = "goose" class = "animal"> 
-                    <img src = "images/goose.png">
-                </div>
-                
-                <div id = "horse" class = "animal"> 
-                    <img src = "images/horse.png">
-                </div>
-            
-                <div id = "cow" class = "animal"> 
-                    <img src = "images/cow.png">
-                </div>
-                
-                <div id = "bird" class = "animal"> 
-                    <img src = "images/bird.png">
-                </div>
-            
-                <div id = "butterfly" class = "animal"> 
-                    <img src = "images/butterfly.png">
-                </div>
-                
-            
-                <div id = "calf" class = "kids"> 
-                    <img src = "images/calf.png">
-                </div>
-            
-                <div id = "caterpillar" class = "kids"> 
-                    <img src = "images/caterpillar.png">
-                </div>
-            
-                <div id = "nestling" class = "kids"> 
-                    <img src = "images/nestling.png">
-                </div>
-            
-                <div id = "bunny" class = "kids"> 
-                    <img src = "images/bunny.png">
-                </div>
-            
-                <div id = "fawn" class = "kids"> 
-                    <img src = "images/fawn.png">
-                </div>
-            
-                <div id = "fry" class = "kids"> 
-                    <img src = "images/fry.png">
-                </div>
-                
-                <div id = "piglet" class = "kids"> 
-                    <img src = "images/piglet.png">
-                </div>
-                
-                <div id = "snakelet" class = "kids"> 
-                    <img src = "images/snakelet.png">
-                </div>
-                
-                <div id = "gosling" class = "kids"> 
-                    <img src = "images/gosling.png">
-                </div>
-            
-                <div id = "foal" class = "kids"> 
-                    <img src = "images/foal.png">
-                </div>
-                
-                <div id = "lamb" class = "kids"> 
-                    <img src = "images/lamb.png">
-                </div>
-             -->
+                <div id="mid-parent"></div>
+                <div id="mid-child"></div>
+               <!-- images in sol.js -->
             </div>
         <h2>Level - Difficult!</h2>
             <div id="diff-container" class="level-container">
-                <!-- <div id = "raccoonPic" class = "animal raccon"> 
-                    <img src = "images/animal1.jpg">
-                </div>
-                
-                <div id = "molePic" class = "animal"> 
-                    <img src = "images/animal2.jpg">
-                </div>
-                
-                <div id = "lynxPic" class = "animal"> 
-                    <img src = "images/animal3.jpg">
-                </div>
-                
-                <div id = "rhinoPic" class = "animal"> 
-                    <img src = "images/animal4.jpg">
-                </div>
-                
-                <div id = "viperPic" class = "animal"> 
-                    <img src = "images/animal5.jpg">
-                </div>
-                
-                <div id = "chipmunkPic" class = "animal"> 
-                    <img src = "images/animal6.jpg">
-                </div>
-                
-                <div id = "slothPic" class = "animal"> 
-                    <img src = "images/animal7.jpg">
-                </div>
-                
-                <div id = "otterPic" class = "animal"> 
-                    <img src = "images/animal8.jpg">
-                </div>
-                
-                
-                <div id = "viper" class = "kids"> 
-                    <img src = "images/viper.png">
-                </div>
-                
-                <div id = "sloth" class = "kids"> 
-                    <img src = "images/sloth.png">
-                </div>
-                
-                <div id = "rhino" class = "kids"> 
-                    <img src = "images/rhino.png">
-                </div>
-                
-                <div id = "raccoon" class = "kids"> 
-                    <img src = "images/raccoon.png">
-                </div>
-                
-                <div id = "otter" class = "kids"> 
-                    <img src = "images/otter.png">
-                </div>
-                
-                <div id = "mole" class = "kids"> 
-                    <img src = "images/mole.png">
-                </div>
-                
-                <div id = "chipmunk" class = "kids"> 
-                    <img src = "images/chipmunk.png">
-                </div>
-                
-                <div id = "lynx" class = "kids"> 
-                    <img src = "images/lynx.png">
-                </div>
-            </div> -->
-    </div>	
-    <script src="./scripts/easy-level.js"></script>
-    <script src="./scripts/mid-level.js"></script>
-    <script src="./scripts/diff-level.js"></script>
+                <div id="diff-parent"></div>
+                <div id="diff-child"></div>
+                <!-- images in sol.js -->
+            </div>	
+    </div>
+    
+    <script src="./scripts/sol.js"></script>
     <script src="main.js"></script>
    
 </body>

@@ -1,4 +1,4 @@
-.level-container {
+.level-container div{
     display: flex;
     flex-wrap: wrap;
 }
