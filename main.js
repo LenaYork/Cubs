@@ -1,20 +1,19 @@
-function applause() {
-    let myAudio = new Audio;
-    myAudio.src = "audio/applause.wav";
-    myAudio.play();
-}
+// in case you'd want a sound effect (applause)
+// function applause() {
+//     let myAudio = new Audio;
+//     myAudio.src = "audio/applause.wav";
+//     myAudio.play();
+// }
 
 function showCorrect(pic) {
     document.getElementById(pic).classList.add("right-picture");
 }
-    
     
     $("#accordion").accordion({
         heightStyle: "content"
     });
     
     $(".kids").draggable();
-        
     
      $("#dog").droppable({
         accept: "#puppy", 
@@ -27,49 +26,56 @@ function showCorrect(pic) {
     $("#cat").droppable({
         accept: "#kitten", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("cat");
         }
     })
     
     $("#hen").droppable({
         accept: "#chicken", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("hen");
         }
     })
     
     $("#tiger").droppable({
         accept: "#tigercub", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("tiger");
         }
     })
     
     $("#lion").droppable({
         accept: "#lioncub", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("lion");
         }
     })
     
     $("#bear").droppable({
         accept: "#bearcub", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("bear");
         }
     })
     
     $("#fox").droppable({
         accept: "#foxcub", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("fox");
         }
     })
     
     $("#wolf").droppable({
         accept: "#wolfcub", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("wolf");
         }
     })
     
@@ -77,96 +83,101 @@ function showCorrect(pic) {
     $("#swine").droppable({
         accept: "#piglet", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("swine");
         }
     })
     
     $("#sheep").droppable({
         accept: "#lamb", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("sheep");
         }
     })
     
     $("#snake").droppable({
         accept: "#snakelet", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("snake");
         }
     })
     
     $("#rabbit").droppable({
         accept: "#bunny", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("rabbit");
         }
     })
     
     $("#deer").droppable({
         accept: "#fawn", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("deer");
         }
     })
     
     $("#goose").droppable({
         accept: "#gosling", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("goose");
         }
     })
     
     $("#horse").droppable({
         accept: "#foal", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("horse");
         }
     })
-    
     
     
     $("#cow").droppable({
         accept: "#calf", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("cow");
         }
     })
     
     $("#bird").droppable({
         accept: "#nestling", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("bird");
         }
     })
     
     $("#butterfly").droppable({
         accept: "#caterpillar", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+            showCorrect("butterfly");
         }
     })
-    
     
     $("#fish").droppable({
         accept: "#fry", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("fish");
         }
     })
     
-    
     //level3
-    
     $("#raccoonPic").droppable({
         accept: "#raccoon", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("raccoonPic");
         }
     })
-    
-     
-    
-    
+
     $("#slothPic").droppable({
         accept: "#sloth", 
         drop: function( event, ui ) {
