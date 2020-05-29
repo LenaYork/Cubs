@@ -170,61 +170,67 @@ function showCorrect(pic) {
     })
     
     //level3
-    $("#raccoonPic").droppable({
+    $("#animal1").droppable({
         accept: "#raccoon", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("raccoonPic");
+           showCorrect("animal1");
         }
     })
 
-    $("#slothPic").droppable({
-        accept: "#sloth", 
+    $("#animal2").droppable({
+        accept: "#mole", 
         drop: function( event, ui ) {
-            applause();
+           // applause();
+           showCorrect("animal2");
         }
     })
     
-    $("#viperPic").droppable({
-        accept: "#viper", 
-        drop: function( event, ui ) {
-            applause();
-        }
-    })
-    
-    $("#lynxPic").droppable({
+    $("#animal3").droppable({
         accept: "#lynx", 
         drop: function( event, ui ) {
+           // applause();
+           showCorrect("animal3");
+        }
+    })
+    
+    $("#animal4").droppable({
+        accept: "#rhino", 
+        drop: function( event, ui ) {
             // applause();
-            showCorrect("lynxPic");
+            showCorrect("animal4");
            
         }
     })
     
-    $("#otterPic").droppable({
-        accept: "#otter", 
+    $("#animal5").droppable({
+        accept: "#viper", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+           showCorrect("animal5");
         }
     })
     
-    $("#rhinoPic").droppable({
-        accept: "#rhino", 
-        drop: function( event, ui ) {
-            applause();
-        }
-    })
-    
-    $("#molePic").droppable({
-        accept: "#mole", 
-        drop: function( event, ui ) {
-            applause();
-        }
-    })
-    
-    $("#chipmunkPic").droppable({
+    $("#animal6").droppable({
         accept: "#chipmunk", 
         drop: function( event, ui ) {
-            applause();
+            // applause();
+           showCorrect("animal6");
+        }
+    })
+    
+    $("#animal7").droppable({
+        accept: "#sloth", 
+        drop: function( event, ui ) {
+           // applause();
+           showCorrect("animal7");
+        }
+    })
+    
+    $("#animal8").droppable({
+        accept: "#otter", 
+        drop: function( event, ui ) {
+           // applause();
+           showCorrect("animal8");
         }
     })

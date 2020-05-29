@@ -4,8 +4,10 @@
 }
 
 .animal, .kids {
-    height: 145px;
-    width: 210px;
+    /* height: 145px;
+    width: 210px; */
+    height: 90px;
+    width: 155px;
     border: 5px solid transparent;
     
     /* float: left; */
@@ -45,3 +47,8 @@
 /* .normal {
     height: 500px!important;
 } */
+
+h2, h3 {
+    text-align: center;
+    color: #393958;
+}
