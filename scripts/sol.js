@@ -21,7 +21,7 @@ const midParents = {
 };
 const midKids = {
     level: "mid", 
-    picNames: ["gosling", "fry", "bunny", "lamb", "nestling", "gosling", "snakelet", "calf", "caterpillar", "foal", "piglet" ],
+    picNames: ["gosling", "fry", "bunny", "lamb", "nestling", "fawn", "snakelet", "calf", "caterpillar", "foal", "piglet" ],
     isParent: false,
 };
 const diffParents =  {
