@@ -49,7 +49,10 @@ function makePic(name, isParent, level) {
 function addPics(level, picsArray, isParent) {
     const idContainer = isParent ? "parent" : "child";
     const createBlock = document.getElementById(`${level}-${idContainer}`); //form id name
-//random mix
+   
+    //random mix
+    picsArray= picsArray.sort(() => Math.random() - 0.5);
+
     picsArray.forEach(image => createBlock.appendChild(makePic(image, isParent, level )));
 }
 
