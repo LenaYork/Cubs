@@ -1,3 +1,88 @@
+const diffImage = [];
+for (i = 1; i < 9; i++ ) {
+    diffImage.push(`animal${i}`);
+}
+
+const easyParents =  {
+    level: "easy", 
+    picNames: ["wolf", "cat", "dog", "bear", "fox", "hen", "lion", "tiger"],
+    isParent: true,
+};
+const easyCubs =  {
+    level: "easy", 
+    picNames: ["kitten", "tigercub", "puppy", "lioncub", "wolfcub", "foxcub", "bearcub", "chicken"],
+    isParent: false,
+};
+const midParents = {
+    level: "mid", 
+    picNames: ["snake", "bird", "cow", "rabbit", "goose", "butterfly", "sheep", "swine", "fish", "deer", "horse"],
+    isParent: true,
+};
+const midKids = {
+    level: "mid", 
+    picNames: ["gosling", "fry", "bunny", "lamb", "nestling", "fawn", "snakelet", "calf", "caterpillar", "foal", "piglet" ],
+    isParent: false,
+};
+const diffParents =  {
+    level: "diff", 
+    picNames: diffImage,
+    isParent: true,
+};
+const diffCubs =  {
+    level: "diff", 
+    picNames: ["mole", "otter", "lynx", "raccoon", "sloth", "viper", "rhino", "chipmunk"],
+    isParent: false,
+};
+
+const PIC_STORAGE = [easyParents, easyCubs, midParents, midKids, diffParents, diffCubs];
+
+function makePic(name, isParent, level) {
+    const pic = document.createElement("img");
+    pic.setAttribute("id",name);
+    const className = isParent ? "animal" : "kids";
+    const type = (level === "diff" && className === "animal" ) ? "jpg" : "png";
+    pic.setAttribute("class", className);
+    pic.setAttribute("src", `images/${level}/${name}.${type}`)
+    return pic;
+}
+
+function addPics(level, picsArray, isParent) {
+    const idContainer = isParent ? "parent" : "child";
+    const createBlock = document.getElementById(`${level}-${idContainer}`); //form id name
+//random mix
+    picsArray.forEach(image => createBlock.appendChild(makePic(image, isParent, level )));
+}
+
+let rightAnswersCounter = 0;
+
+function showCorrect(parent, child) {
+    document.getElementById(parent).classList.add("right-picture");
+    // document.getElementById(parent).classList.remove("ui-droppable");
+    // $('div.foo').draggable( "disable" );
+    $(`#${parent}`).droppable( "disable" );
+    $(`#${child}`).draggable( "disable" );
+    // document.getElementById(child).classList.remove("ui-draggable");
+    rightAnswersCounter +=1;
+    // alert(rightAnswersCounter);
+}
+
+PIC_STORAGE.map(elem => {
+    const {level, picNames, isParent} = elem;
+    addPics(level, picNames, isParent);
+    // picNames.forEach(name => {
+    //     $("#dog").droppable({
+    //         accept: "#puppy", 
+    //         drop: function( event, ui ) {
+    //             // applause();
+    //             showCorrect("dog", "puppy");
+    //         }
+    //     })
+    // })
+});
+
+
+// console.log(PIC_STORAGE);
+
 // in case you'd want a sound effect (applause)
 // function applause() {
 //     let myAudio = new Audio;
@@ -5,9 +90,6 @@
 //     myAudio.play();
 // }
 
-function showCorrect(pic) {
-    document.getElementById(pic).classList.add("right-picture");
-}
     
     $("#accordion").accordion({
         heightStyle: "content"
@@ -19,7 +101,7 @@ function showCorrect(pic) {
         accept: "#puppy", 
         drop: function( event, ui ) {
             // applause();
-            showCorrect("dog");
+            showCorrect("dog", "puppy");
         }
     })
     
@@ -27,7 +109,7 @@ function showCorrect(pic) {
         accept: "#kitten", 
         drop: function( event, ui ) {
             // applause();
-            showCorrect("cat");
+            showCorrect("cat", "kitten");
         }
     })
     
@@ -35,7 +117,7 @@ function showCorrect(pic) {
         accept: "#chicken", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("hen");
+           showCorrect("hen", "chicken");
         }
     })
     
@@ -43,7 +125,7 @@ function showCorrect(pic) {
         accept: "#tigercub", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("tiger");
+           showCorrect("tiger", "tigetcub");
         }
     })
     
@@ -51,7 +133,7 @@ function showCorrect(pic) {
         accept: "#lioncub", 
         drop: function( event, ui ) {
             // applause();
-            showCorrect("lion");
+            showCorrect("lion", "lioncub");
         }
     })
     
@@ -59,7 +141,7 @@ function showCorrect(pic) {
         accept: "#bearcub", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("bear");
+           showCorrect("bear", "bearcub");
         }
     })
     
@@ -67,7 +149,7 @@ function showCorrect(pic) {
         accept: "#foxcub", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("fox");
+           showCorrect("fox", "foxcub");
         }
     })
     
@@ -75,7 +157,7 @@ function showCorrect(pic) {
         accept: "#wolfcub", 
         drop: function( event, ui ) {
             // applause();
-            showCorrect("wolf");
+            showCorrect("wolf", "wolfcub");
         }
     })
     
@@ -84,7 +166,7 @@ function showCorrect(pic) {
         accept: "#piglet", 
         drop: function( event, ui ) {
             // applause();
-            showCorrect("swine");
+            showCorrect("swine", "piglet");
         }
     })
     
@@ -92,7 +174,7 @@ function showCorrect(pic) {
         accept: "#lamb", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("sheep");
+           showCorrect("sheep", "lamb");
         }
     })
     
@@ -100,7 +182,7 @@ function showCorrect(pic) {
         accept: "#snakelet", 
         drop: function( event, ui ) {
            // applause();
-           showCorrect("snake");
+           showCorrect("snake", "snakelet");
         }
     })
     
@@ -108,10 +190,11 @@ function showCorrect(pic) {
         accept: "#bunny", 
         drop: function( event, ui ) {
             // applause();
-            showCorrect("rabbit");
+            showCorrect("rabbit", "bunny");
         }
     })
     
+    //level 2
     $("#deer").droppable({
         accept: "#fawn", 
         drop: function( event, ui ) {
