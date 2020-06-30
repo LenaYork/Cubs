@@ -62,6 +62,23 @@ const LEVEL_TITLES = [
 
 let rightAnswersCounter = 0;
 
+let totalUserScore = document.querySelector("#userScore");
+ totalUserScore.innerHTML = rightAnswersCounter;
+
+ let  gameControlButton = document.querySelector(".start-button");
+ function toggleButtonName() {
+    
+     if (gameControlButton.innerHTML === 'START'){
+         gameControlButton.innerHTML = 'STOP',
+         startGame();
+    } 
+    else {
+        gameControlButton.innerHTML = 'START',
+        stopGame();
+    };
+     
+}
+
 function makePic(name, level, isParent) {   
     const pic = document.createElement("img");  
     pic.setAttribute("id",name);   
