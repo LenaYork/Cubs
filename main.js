@@ -50,7 +50,7 @@ const PIC_PAIR_STORAGE = [
     }
 ];
 
-const LEVEL_TITLES = [ //массивчик уровней для отрисовки по start
+const LEVEL_TITLES = [ 
     '#easy-parent',
     '#easy-child',
     '#mid-parent', 
@@ -58,6 +58,16 @@ const LEVEL_TITLES = [ //массивчик уровней для отрисов
     '#diff-parent',
     '#diff-child'
 ];
+
+function makePic(name, level, isParent) {   
+    const pic = document.createElement("img");  
+    pic.setAttribute("id",name);   
+    const className = isParent ? "animal" : "kids";   
+    const type = (level === "diff" && className === "animal" ) ? "jpg" : "png"; 
+    pic.setAttribute("class", className); 
+    pic.setAttribute("src", `images/${level}/${name}.${type}`) 
+    return pic; 
+}
 
 function showCorrect(pic) {
     document.getElementById(pic).classList.add("right-picture");
