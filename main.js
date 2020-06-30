@@ -5,6 +5,51 @@
 //     myAudio.play();
 // }
 
+const PIC_PAIR_STORAGE = [ 
+    {
+        level: "easy",
+        picNames: {
+            wolf: "wolfcub",
+            tiger: "tigercub",
+            cat: "kitten",
+            dog: "puppy",
+            bear: "bearcub",
+            fox: "foxcub",
+            hen: "chicken",
+            lion: "lioncub",
+        },
+    },
+    {
+        level: "mid",
+        picNames: { 
+            snake: "snakelet",
+            bird: "nestling",
+            cow: "calf",
+            rabbit: "bunny",
+            goose: "gosling",
+            butterfly: "caterpillar",
+            sheep: "lamb",
+            swine: "piglet",
+            fish: "fry",
+            deer: "fawn",
+            horse: "foal",
+        },
+    },
+    {
+        level: "diff",
+        picNames: {
+            animal1: "raccoon",
+            animal2: "mole",
+            animal3: "lynx",
+            animal4: "rhino",
+            animal5: "viper",
+            animal6: "chipmunk",
+            animal7: "sloth",
+            animal8: "otter",
+        },
+    }
+];
+
 function showCorrect(pic) {
     document.getElementById(pic).classList.add("right-picture");
 }
