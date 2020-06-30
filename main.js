@@ -50,6 +50,15 @@ const PIC_PAIR_STORAGE = [
     }
 ];
 
+const LEVEL_TITLES = [ //массивчик уровней для отрисовки по start
+    '#easy-parent',
+    '#easy-child',
+    '#mid-parent', 
+    '#mid-child', 
+    '#diff-parent',
+    '#diff-child'
+];
+
 function showCorrect(pic) {
     document.getElementById(pic).classList.add("right-picture");
 }
