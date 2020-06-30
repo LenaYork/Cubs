@@ -1,90 +1,115 @@
-const diffImage = [];
-for (i = 1; i < 9; i++ ) {
-    diffImage.push(`animal${i}`);
+
+   const PIC_PAIR_STORAGE = [ //новый массив объектов
+    {
+        level: "easy",
+        picNames: {
+            wolf: "wolfcub",
+            tiger: "tigercub",
+            cat: "kitten",
+            dog: "puppy",
+            bear: "bearcub",
+            fox: "foxcub",
+            hen: "chicken",
+            lion: "lioncub",
+        },
+    },
+    {
+        level: "mid",
+        picNames: { 
+            snake: "snakelet",
+            bird: "nestling",
+            cow: "calf",
+            rabbit: "bunny",
+            goose: "gosling",
+            butterfly: "caterpillar",
+            sheep: "lamb",
+            swine: "piglet",
+            fish: "fry",
+            deer: "fawn",
+            horse: "foal",
+        },
+    },
+    {
+        level: "diff",
+        picNames: {
+            animal1: "raccoon",
+            animal2: "mole",
+            animal3: "lynx",
+            animal4: "rhino",
+            animal5: "viper",
+            animal6: "chipmunk",
+            animal7: "sloth",
+            animal8: "otter",
+        },
+    }
+];
+
+const LEVEL_TITLES = [ //массивчик уровней для отрисовки по start
+    '#easy-parent',
+    '#easy-child',
+    '#mid-parent', 
+    '#mid-child', 
+    '#diff-parent',
+    '#diff-child'
+];
+
+function makePic(name, level, isParent) {   // создает фотку
+    const pic = document.createElement("img");   // создать тег img
+    pic.setAttribute("id",name);   // добавить ей айдишку по name
+    const className = isParent ? "animal" : "kids";   // создать класс родитель или деть
+    const type = (level === "diff" && className === "animal" ) ? "jpg" : "png"; //если Level diff и класс animal то тип фотки - jpg byfxt png
+    pic.setAttribute("class", className); //фотке добавить класс (родитель-деть)
+    pic.setAttribute("src", `images/${level}/${name}.${type}`) //добавить ссыль уровень/имя/тип фотки
+    return pic; 
 }
 
-const easyParents =  {
-    level: "easy", 
-    picNames: ["wolf", "cat", "dog", "bear", "fox", "hen", "lion", "tiger"],
-    isParent: true,
-};
-const easyCubs =  {
-    level: "easy", 
-    picNames: ["kitten", "tigercub", "puppy", "lioncub", "wolfcub", "foxcub", "bearcub", "chicken"],
-    isParent: false,
-};
-const midParents = {
-    level: "mid", 
-    picNames: ["snake", "bird", "cow", "rabbit", "goose", "butterfly", "sheep", "swine", "fish", "deer", "horse"],
-    isParent: true,
-};
-const midKids = {
-    level: "mid", 
-    picNames: ["gosling", "fry", "bunny", "lamb", "nestling", "fawn", "snakelet", "calf", "caterpillar", "foal", "piglet" ],
-    isParent: false,
-};
-const diffParents =  {
-    level: "diff", 
-    picNames: diffImage,
-    isParent: true,
-};
-const diffCubs =  {
-    level: "diff", 
-    picNames: ["mole", "otter", "lynx", "raccoon", "sloth", "viper", "rhino", "chipmunk"],
-    isParent: false,
-};
-
-const PIC_STORAGE = [easyParents, easyCubs, midParents, midKids, diffParents, diffCubs];
-
-function makePic(name, isParent, level) {
-    const pic = document.createElement("img");
-    pic.setAttribute("id",name);
-    const className = isParent ? "animal" : "kids";
-    const type = (level === "diff" && className === "animal" ) ? "jpg" : "png";
-    pic.setAttribute("class", className);
-    pic.setAttribute("src", `images/${level}/${name}.${type}`)
-    return pic;
-}
-
-function addPics(level, picsArray, isParent) {
-    const idContainer = isParent ? "parent" : "child";
-    const createBlock = document.getElementById(`${level}-${idContainer}`); //form id name
-   
+const mixArray = (array) => {
     //random mix
-    picsArray= picsArray.sort(() => Math.random() - 0.5);
-
-    picsArray.forEach(image => createBlock.appendChild(makePic(image, isParent, level )));
+    return array.sort(() => Math.random() - 0.5); //перемешать массив 
 }
 
+function addPics(level, picNames, isParent) { //добавляет фотку в ДОМ 
+    // const idContainer = isParent ? "parent" : "child"; //  создать айдишку по isParent //если picNames[x, 0] то parent если picNames[x, 1] то child
+    const parentBlock = document.getElementById(`${level}-parent`);
+    const childBlock = document.getElementById(`${level}-child`);
+    //найти в доме див по айдишке
+   
+    //разбить 
+    const parentsNames = mixArray(Object.keys(picNames)); //массив ключей пэрентов и сразу микс
+    const childrenNames = mixArray(Object.values(picNames)); //массив значение кидзов
+
+    
+    parentsNames.forEach(image => parentBlock.appendChild(makePic(image, level, true )));
+    childrenNames.forEach(image => childBlock.appendChild(makePic(image, level, false ))); 
+    // в див добавить makepic 
+
+    parentsNames.forEach(parent => {
+        const child = picNames[parent];
+        $(`#${parent}`).droppable({
+            accept: `#${child}`, 
+            drop: function( event, ui ) {
+                // applause();
+                showCorrect(parent, child);
+            }
+        })
+    })
+
+}
 let rightAnswersCounter = 0;
 
+
 function showCorrect(parent, child) {
-    document.getElementById(parent).classList.add("right-picture");
-    // document.getElementById(parent).classList.remove("ui-droppable");
-    // $('div.foo').draggable( "disable" );
-    $(`#${parent}`).droppable( "disable" );
-    $(`#${child}`).draggable( "disable" );
-    // document.getElementById(child).classList.remove("ui-draggable");
-    rightAnswersCounter +=1;
-    // alert(rightAnswersCounter);
+document.getElementById(parent).classList.add("right-picture");
+
+$(`#${parent}`).droppable( "disable" );
+$(`#${child}`).draggable( "disable" );
+
+rightAnswersCounter +=1;
+totalUserScore.innerHTML = rightAnswersCounter;
+// alert(rightAnswersCounter);
+
 }
 
-PIC_STORAGE.map(elem => {
-    const {level, picNames, isParent} = elem;
-    addPics(level, picNames, isParent);
-    // picNames.forEach(name => {
-    //     $("#dog").droppable({
-    //         accept: "#puppy", 
-    //         drop: function( event, ui ) {
-    //             // applause();
-    //             showCorrect("dog", "puppy");
-    //         }
-    //     })
-    // })
-});
-
-
-// console.log(PIC_STORAGE);
 
 // in case you'd want a sound effect (applause)
 // function applause() {
@@ -92,231 +117,112 @@ PIC_STORAGE.map(elem => {
 //     myAudio.src = "audio/applause.wav";
 //     myAudio.play();
 // }
+let userTime = document.querySelector("#timeLeft");
+userTime.innerHTML = '0:00';
 
-    
+let userTimer;
+let sec;
+
+
+function displayResult() {
+    userTime.innerHTML = '0:60';
+    sec--;
+    userTime.innerHTML = (`0:${sec < 10 ? '0' : '' }${sec} `);
+    console.log(sec);
+};
+
+function setTimer() {
+    sec = 60;
+    userTimer = setInterval(displayResult, 1000);
+}
+
+function stopTimer() {
+    clearInterval(userTimer);
+}
+
+
+ function startGame() {
+   
+    //начать таймер
+    setTimer();
+    setTimeout(stopGame, 60000) //60 и 000 мс
+    $("#userTotalResult").addClass('hidden');
+    //построить дом
+    //вернуть контейер
+    $(".gamefield").removeClass("hidden");
+
+    const diffImage = [];
+    for (i = 1; i < 9; i++ ) {
+        diffImage.push(`animal${i}`);
+    }  //создаем массив картинок с животными сложного уровня
+
+
+    PIC_PAIR_STORAGE.map(elem => {
+        const {level, picNames} = elem;  
+                                                
+        addPics(level, picNames);  
+    })
+
     $("#accordion").accordion({
         heightStyle: "content"
     });
-    
+     
     $(".kids").draggable();
-    
-     $("#dog").droppable({
-        accept: "#puppy", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("dog", "puppy");
-        }
-    })
-    
-    $("#cat").droppable({
-        accept: "#kitten", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("cat", "kitten");
-        }
-    })
-    
-    $("#hen").droppable({
-        accept: "#chicken", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("hen", "chicken");
-        }
-    })
-    
-    $("#tiger").droppable({
-        accept: "#tigercub", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("tiger", "tigetcub");
-        }
-    })
-    
-    $("#lion").droppable({
-        accept: "#lioncub", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("lion", "lioncub");
-        }
-    })
-    
-    $("#bear").droppable({
-        accept: "#bearcub", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("bear", "bearcub");
-        }
-    })
-    
-    $("#fox").droppable({
-        accept: "#foxcub", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("fox", "foxcub");
-        }
-    })
-    
-    $("#wolf").droppable({
-        accept: "#wolfcub", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("wolf", "wolfcub");
-        }
-    })
-    
-    //level2
-    $("#swine").droppable({
-        accept: "#piglet", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("swine", "piglet");
-        }
-    })
-    
-    $("#sheep").droppable({
-        accept: "#lamb", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("sheep", "lamb");
-        }
-    })
-    
-    $("#snake").droppable({
-        accept: "#snakelet", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("snake", "snakelet");
-        }
-    })
-    
-    $("#rabbit").droppable({
-        accept: "#bunny", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("rabbit", "bunny");
-        }
-    })
-    
-    //level 2
-    $("#deer").droppable({
-        accept: "#fawn", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("deer");
-        }
-    })
-    
-    $("#goose").droppable({
-        accept: "#gosling", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("goose");
-        }
-    })
-    
-    $("#horse").droppable({
-        accept: "#foal", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("horse");
-        }
-    })
-    
-    
-    $("#cow").droppable({
-        accept: "#calf", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("cow");
-        }
-    })
-    
-    $("#bird").droppable({
-        accept: "#nestling", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("bird");
-        }
-    })
-    
-    $("#butterfly").droppable({
-        accept: "#caterpillar", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("butterfly");
-        }
-    })
-    
-    $("#fish").droppable({
-        accept: "#fry", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("fish");
-        }
-    })
-    
-    //level3
-    $("#animal1").droppable({
-        accept: "#raccoon", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("animal1");
-        }
-    })
 
-    $("#animal2").droppable({
-        accept: "#mole", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("animal2");
-        }
-    })
+    //заменить кнопку start на stop (уже в обработчике)
+  
+        //обнулить прав ответы
+    rightAnswersCounter = 0;
+    totalUserScore.innerHTML = 0;
+
+ }
+
+ function stopGame() {
+    stopTimer();
+
+    //снять подвижность pics
+    $(".animal").droppable( "disable" );
+    $(".kids").draggable( "disable" );
     
-    $("#animal3").droppable({
-        accept: "#lynx", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("animal3");
-        }
-    })
+    //сообщение с итогами
+    document.querySelector("#userTotalResult").innerHTML = `Time is up! You managed to get ${rightAnswersCounter} point(s) out of 27`;
+    // alert(`Time is up! You managed to get ${rightAnswersCounter} point(s) out of 27`);
+    $("#userTotalResult").removeClass("hidden");
+
+    //кнопка должна снова стать start
+    gameControlButton.innerHTML = 'START';
     
-    $("#animal4").droppable({
-        accept: "#rhino", 
-        drop: function( event, ui ) {
-            // applause();
-            showCorrect("animal4");
-           
-        }
-    })
+    LEVEL_TITLES.map( elem => $(elem).html(""));
+
+    //очистить предыдущие значения
+    // $('#easy-parent').html("");
+    // $('#easy-child').html("");
+    // $('#mid-parent').html("");
+    // $('#mid-child').html("");
+    // $('#diff-parent').html("");
+    // $('#diff-child').html("");
     
-    $("#animal5").droppable({
-        accept: "#viper", 
-        drop: function( event, ui ) {
-            // applause();
-           showCorrect("animal5");
-        }
-    })
+    //снова сделать заголовки невидимыми
+    // $(".level-title").addClass("hidden");
+    $(".gamefield").addClass("hidden");
+}
+
+ let totalUserScore = document.querySelector("#userScore");
+ totalUserScore.innerHTML = rightAnswersCounter;
+
+ let  gameControlButton = document.querySelector(".start-button");
+ function toggleButtonName() {
     
-    $("#animal6").droppable({
-        accept: "#chipmunk", 
-        drop: function( event, ui ) {
-            // applause();
-           showCorrect("animal6");
-        }
-    })
-    
-    $("#animal7").droppable({
-        accept: "#sloth", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("animal7");
-        }
-    })
-    
-    $("#animal8").droppable({
-        accept: "#otter", 
-        drop: function( event, ui ) {
-           // applause();
-           showCorrect("animal8");
-        }
-    })
+     if (gameControlButton.innerHTML === 'START'){
+         gameControlButton.innerHTML = 'STOP',
+         startGame();
+    } 
+    else {
+        gameControlButton.innerHTML = 'START',
+        stopGame();
+    };
+     
+}
+
+gameControlButton.addEventListener('click', toggleButtonName);
+// gameControlButton.addEventListener('dblclick', false);
