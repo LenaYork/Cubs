@@ -101,7 +101,6 @@ function addPics(level, picNames, isParent) {
 }
 
 
-
 function showCorrect(parent, child) {
     document.getElementById(parent).classList.add("right-picture");
 
@@ -110,6 +109,29 @@ function showCorrect(parent, child) {
    
     rightAnswersCounter +=1;
     totalUserScore.innerHTML = rightAnswersCounter;
+}
+
+let userTime = document.querySelector("#timeLeft");
+userTime.innerHTML = '0:00';
+
+let userTimer;
+let sec;
+
+
+function displayResult() {
+    userTime.innerHTML = '0:60';
+    sec--;
+    userTime.innerHTML = (`0:${sec < 10 ? '0' : '' }${sec} `);
+    console.log(sec);
+};
+
+function setTimer() {
+    sec = 60;
+    userTimer = setInterval(displayResult, 1000);
+}
+
+function stopTimer() {
+    clearInterval(userTimer);
 }
     
     $("#accordion").accordion({
