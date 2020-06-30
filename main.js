@@ -69,6 +69,36 @@ function makePic(name, level, isParent) {
     return pic; 
 }
 
+const mixArray = (array) => {
+    //random mix
+    return array.sort(() => Math.random() - 0.5); 
+}
+
+function addPics(level, picNames, isParent) {
+    const parentBlock = document.getElementById(`${level}-parent`);
+    const childBlock = document.getElementById(`${level}-child`);
+       
+    const parentsNames = mixArray(Object.keys(picNames)); 
+    const childrenNames = mixArray(Object.values(picNames)); 
+
+    parentsNames.forEach(image => parentBlock.appendChild(makePic(image, level, true )));
+    childrenNames.forEach(image => childBlock.appendChild(makePic(image, level, false ))); 
+    
+    parentsNames.forEach(parent => {
+        const child = picNames[parent];
+        $(`#${parent}`).droppable({
+            accept: `#${child}`, 
+            drop: function( event, ui ) {
+                // applause();
+                showCorrect(parent, child);
+            }
+        })
+    })
+
+}
+
+
+
 function showCorrect(pic) {
     document.getElementById(pic).classList.add("right-picture");
 }
