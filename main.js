@@ -59,6 +59,9 @@ const LEVEL_TITLES = [
     '#diff-child'
 ];
 
+
+let rightAnswersCounter = 0;
+
 function makePic(name, level, isParent) {   
     const pic = document.createElement("img");  
     pic.setAttribute("id",name);   
@@ -99,8 +102,14 @@ function addPics(level, picNames, isParent) {
 
 
 
-function showCorrect(pic) {
-    document.getElementById(pic).classList.add("right-picture");
+function showCorrect(parent, child) {
+    document.getElementById(parent).classList.add("right-picture");
+
+    $(`#${parent}`).droppable( "disable" );
+    $(`#${child}`).draggable( "disable" );
+   
+    rightAnswersCounter +=1;
+    totalUserScore.innerHTML = rightAnswersCounter;
 }
     
     $("#accordion").accordion({
