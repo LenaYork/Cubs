@@ -133,6 +133,40 @@ function setTimer() {
 function stopTimer() {
     clearInterval(userTimer);
 }
+
+function startGame() {
+   
+    setTimer();
+    setTimeout(stopGame, 60000) //60sec
+    $("#userTotalResult").addClass('hidden');
+
+    $(".gamefield").removeClass("hidden");
+
+    const diffImage = [];
+    for (i = 1; i < 9; i++ ) {
+        diffImage.push(`animal${i}`);
+    }  //create an array of pic with diff level animals 
+
+
+    PIC_PAIR_STORAGE.map(elem => {
+        const {level, picNames} = elem;  
+                                                
+        addPics(level, picNames);  
+    })
+
+    $("#accordion").accordion({
+        heightStyle: "content"
+    });
+     
+    $(".kids").draggable();
+
+    //заменить кнопку start на stop (уже в обработчике)
+  
+        //обнулить прав ответы
+    rightAnswersCounter = 0;
+    totalUserScore.innerHTML = 0;
+
+ }
     
     $("#accordion").accordion({
         heightStyle: "content"
