@@ -159,14 +159,28 @@ function startGame() {
     });
      
     $(".kids").draggable();
-
-    //заменить кнопку start на stop (уже в обработчике)
-  
-        //обнулить прав ответы
-    rightAnswersCounter = 0;
+ 
+    srightAnswersCounter = 0;
     totalUserScore.innerHTML = 0;
 
  }
+
+ function stopGame() {
+    stopTimer();
+
+    $(".animal").droppable( "disable" );
+    $(".kids").draggable( "disable" );
+    
+    
+    document.querySelector("#userTotalResult").innerHTML = `Time is up! You managed to get ${rightAnswersCounter} point(s) out of 27`;
+    $("#userTotalResult").removeClass("hidden");
+
+    gameControlButton.innerHTML = 'START';
+    
+    LEVEL_TITLES.map( elem => $(elem).html(""));
+
+    $(".gamefield").addClass("hidden");
+}
     
     $("#accordion").accordion({
         heightStyle: "content"
