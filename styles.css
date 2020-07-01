@@ -1,3 +1,39 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #393958;
+    padding-top: 0;
+  
+}
+
+.navigation, .rules {
+    padding-top: 0;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 15px;
+      /* position: fixed; */
+   
+}
+
+.start-button {
+    cursor: pointer;
+    width: 55%;
+    height: 25%;
+    border: 1px solid #393958;
+    border-radius: 25px;
+    text-align: center;
+    user-select: none;
+}
+
+.start-button:hover {
+    background-color: #a8a8db;
+}
+
 .level-container div{
     display: flex;
     flex-wrap: wrap;
@@ -12,6 +48,7 @@
     
     /* float: left; */
 }
+
 
 .kids {
     display: flex;
@@ -44,11 +81,21 @@
     background-size: cover;
 }
 
-/* .normal {
-    height: 500px!important;
-} */
-
-h2, h3 {
+h1, h2, h3 {
     text-align: center;
     color: #393958;
+}
+
+.level-title {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.userTotalResult {
+    color: #0707a7;
+    font-weight: bold;
+    font-size: x-large;
 }
