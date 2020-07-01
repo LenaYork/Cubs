@@ -189,7 +189,8 @@ function startGame() {
     $(".kids").draggable( "disable" );
     
     
-    document.querySelector("#userTotalResult").innerHTML = `Time is up! You managed to get ${rightAnswersCounter} point(s) out of 27`;
+    // document.querySelector("#userTotalResult").innerHTML = `Time is up! You managed to get ${rightAnswersCounter} point(s) out of 27`;
+    document.querySelector("#userTotalResult").innerHTML = 'Time is up! But you can try again';
     $("#userTotalResult").removeClass("hidden");
 
     gameControlButton.innerHTML = 'START';

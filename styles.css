@@ -93,9 +93,16 @@ h1, h2, h3 {
 .hidden {
     display: none;
 }
-
+/* 
 .userTotalResult {
     color: #0707a7;
+    font-weight: bold;
+    font-size: x-large;
+} */
+
+
+.navigation{
+    color: #393958;
     font-weight: bold;
     font-size: x-large;
 }
