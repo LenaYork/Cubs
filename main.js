@@ -152,7 +152,7 @@ function stopTimer() {
 }
 
 function startGame() {
-   
+    userTime.innerHTML = "1:00";
     setTimer();
     setTimeout(stopGame, 60000) //60sec
     $("#userTotalResult").addClass('hidden');
