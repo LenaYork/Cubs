@@ -199,4 +199,5 @@ function startGame() {
     $(".gamefield").addClass("hidden");
 }
     
+gameControlButton.addEventListener('click', toggleButtonName);
   

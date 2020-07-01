@@ -12,35 +12,52 @@
     <title>English words</title>
 </head>
 <body>
-
-    <h2>Chose your level and match animals with their kids!</h2>
-    <h3><strong>Instruction:</strong> click on a child card and drag it onto its parent card</h3>
-    <audio src="audio/applause.wav" ></audio>
-
-    <div id="accordion">
-        <h2>Level - Easy </h2>
-        <div>
-            <div id="easy-container" class="level-container">
-                <div id="easy-parent"></div>
-                <div id="easy-child"></div>
-               <!-- images in sol.js -->
+    <header class="header">
+        <div class="navigation">
+            <h1>Cubs game</h1>
+            <div class="start-button">START</div>
+            <div>TIME LEFT:
+                <span id="timeLeft"></span>
             </div>
+            <div>YOUR SCORE: 
+                <span id="userScore"></span>
+            </div>
+            <div id="userTotalResult" class="userTotalResult"></div> 
         </div>
-        <h2>Level Intermediate</h2>
-            <div id="mid-container" class="level-container">
-                <div id="mid-parent"></div>
-                <div id="mid-child"></div>
-               <!-- images in sol.js -->
-            </div>
-        <h2>Level - Difficult!</h2>
-            <div id="diff-container" class="level-container">
-                <div id="diff-parent"></div>
-                <div id="diff-child"></div>
-                <!-- images in sol.js -->
-            </div>	
-    </div>
+        <div class="rules">
+            <h2>Chose your level and match animals with their kids!</h2>
+            <h3><em>Instruction:</em> Click START, then click on a child card and drag it onto its parent card</h3>
+            <!-- <audio src="audio/applause.wav" ></audio> -->
+            
+        </div>
+    </header>
     
-    <script src="./scripts/sol.js"></script>
+    <section class="gamefield">
+        <div id="accordion">
+            <h2 class="level-title">Level - Easy </h2>
+            <div>
+                <div id="easy-container" class="level-container">
+                    <div id="easy-parent"></div>
+                    <div id="easy-child"></div>
+                <!-- images in sol.js -->
+                </div>
+            </div>
+            <h2 class="level-title">Level Intermediate</h2>
+                <div id="mid-container" class="level-container">
+                    <div id="mid-parent"></div>
+                    <div id="mid-child"></div>
+                <!-- images in sol.js -->
+                </div>
+            <h2 class="level-title">Level - Difficult!</h2>
+                <div id="diff-container" class="level-container">
+                    <div id="diff-parent"></div>
+                    <div id="diff-child"></div>
+                    <!-- images in sol.js -->
+                </div>	
+        </div>
+    </section>
+    
+    <!-- <script src="./scripts/sol.js"></script> -->
     <script src="main.js"></script>
    
 </body>
