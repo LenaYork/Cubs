@@ -1,9 +1,10 @@
 // in case you'd want a sound effect (applause)
-// function applause() {
-//     let myAudio = new Audio;
-//     myAudio.src = "audio/applause.wav";
-//     myAudio.play();
-// }
+/*function applause() {
+    let myAudio = new Audio;
+    myAudio.src = "audio/applause.wav";
+    myAudio.play();
+}
+*/
 
 const PIC_PAIR_STORAGE = [ 
     {
@@ -59,24 +60,28 @@ const LEVEL_TITLES = [
     '#diff-child'
 ];
 
-
 let rightAnswersCounter = 0;
 
-let totalUserScore = document.querySelector("#userScore");
- totalUserScore.innerHTML = rightAnswersCounter;
+const totalUserScore = document.querySelector("#userScore");
+totalUserScore.innerHTML = rightAnswersCounter;
 
- let  gameControlButton = document.querySelector(".start-button");
- function toggleButtonName() {
-    
-     if (gameControlButton.innerHTML === 'START'){
-         gameControlButton.innerHTML = 'STOP',
-         startGame();
+const  gameControlButton = document.querySelector(".start-button");
+
+let userTime = document.querySelector("#timeLeft");
+userTime.innerHTML = '0:00';
+
+let userTimer;
+let sec;
+
+function toggleButtonName() {
+    if (gameControlButton.innerHTML === 'START'){
+        gameControlButton.innerHTML = 'STOP',
+        startGame();
     } 
     else {
         gameControlButton.innerHTML = 'START',
         stopGame();
-    };
-     
+    }; 
 }
 
 function makePic(name, level, isParent) {   
@@ -90,7 +95,6 @@ function makePic(name, level, isParent) {
 }
 
 const mixArray = (array) => {
-    //random mix
     return array.sort(() => Math.random() - 0.5); 
 }
 
@@ -114,9 +118,7 @@ function addPics(level, picNames, isParent) {
             }
         })
     })
-
 }
-
 
 function showCorrect(parent, child) {
     document.getElementById(parent).classList.add("right-picture");
@@ -127,13 +129,6 @@ function showCorrect(parent, child) {
     rightAnswersCounter +=1;
     totalUserScore.innerHTML = rightAnswersCounter;
 }
-
-let userTime = document.querySelector("#timeLeft");
-userTime.innerHTML = '0:00';
-
-let userTimer;
-let sec;
-
 
 function displayResult() {
     userTime.innerHTML = '0:60';
@@ -155,8 +150,8 @@ function startGame() {
     userTime.innerHTML = "1:00";
     setTimer();
     setTimeout(stopGame, 60000) //60sec
-    $("#userTotalResult").addClass('hidden');
 
+    $("#userTotalResult").addClass('hidden');
     $(".gamefield").removeClass("hidden");
 
     const diffImage = [];
@@ -166,8 +161,7 @@ function startGame() {
 
 
     PIC_PAIR_STORAGE.map(elem => {
-        const {level, picNames} = elem;  
-                                                
+        const {level, picNames} = elem;                                
         addPics(level, picNames);  
     })
 
@@ -179,7 +173,6 @@ function startGame() {
  
     srightAnswersCounter = 0;
     totalUserScore.innerHTML = 0;
-
  }
 
  function stopGame() {
@@ -188,8 +181,6 @@ function startGame() {
     $(".animal").droppable( "disable" );
     $(".kids").draggable( "disable" );
     
-    
-    // document.querySelector("#userTotalResult").innerHTML = `Time is up! You managed to get ${rightAnswersCounter} point(s) out of 27`;
     document.querySelector("#userTotalResult").innerHTML = 'Time is up! But you can try again';
     $("#userTotalResult").removeClass("hidden");
 
@@ -201,4 +192,3 @@ function startGame() {
 }
     
 gameControlButton.addEventListener('click', toggleButtonName);
-  
