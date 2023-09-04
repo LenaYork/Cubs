@@ -28,10 +28,15 @@
     border-radius: 25px;
     text-align: center;
     user-select: none;
+    transition: 0.5s;
 }
 
 .start-button:hover {
     background-color: #a8a8db;
+}
+
+.start-button:active {
+    transform: scale(105%);
 }
 
 .level-container div{
